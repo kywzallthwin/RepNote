@@ -7,7 +7,7 @@ public class Equipment {
         this.category = category;
     }
 
-    String getEquipmentName() {
+    public String getEquipmentName() {
         return this.equipmentName;
     }
 }

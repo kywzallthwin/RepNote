@@ -1,15 +1,42 @@
 import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.StandardCopyOption;
 import java.util.ArrayList;
 import java.util.Scanner;
 
 public class FileManager {
     private static final String FILE_NAME = "workout_data.txt";
 
+    private static File getPrimaryDataFile() {
+        Path cwd = Path.of(System.getProperty("user.dir")).toAbsolutePath().normalize();
+        Path projectRoot = cwd;
+
+        if (cwd.getFileName() != null && "src".equalsIgnoreCase(cwd.getFileName().toString()) && cwd.getParent() != null) {
+            projectRoot = cwd.getParent();
+        }
+
+        return projectRoot.resolve(FILE_NAME).toFile();
+    }
+
+    private static File getLegacyDataFile() {
+        Path cwd = Path.of(System.getProperty("user.dir")).toAbsolutePath().normalize();
+        Path projectRoot = cwd;
+
+        if (cwd.getFileName() != null && "src".equalsIgnoreCase(cwd.getFileName().toString()) && cwd.getParent() != null) {
+            projectRoot = cwd.getParent();
+        }
+
+        return projectRoot.resolve("src").resolve(FILE_NAME).toFile();
+    }
+
     /**
      * Save the lifter's workout history to a file
      */
     public static void saveWorkoutHistory(Lifter lifter) {
-        try (PrintWriter writer = new PrintWriter(new FileWriter(FILE_NAME))) {
+        File dataFile = getPrimaryDataFile();
+
+        try (PrintWriter writer = new PrintWriter(new FileWriter(dataFile))) {
             writer.println(lifter.getName());
             writer.println(lifter.getBodyWeight());
             writer.println(lifter.getHistory().getSessions().size());
@@ -48,7 +75,17 @@ public class FileManager {
      * Load the lifter's workout history from file
      */
     public static Lifter loadWorkoutHistory() {
-        File file = new File(FILE_NAME);
+        File file = getPrimaryDataFile();
+        File legacyFile = getLegacyDataFile();
+
+        if (!file.exists() && legacyFile.exists()) {
+            try {
+                Files.copy(legacyFile.toPath(), file.toPath(), StandardCopyOption.REPLACE_EXISTING);
+                System.out.println("Migrated workout data from src/workout_data.txt to workout_data.txt");
+            } catch (IOException e) {
+                System.out.println("Error migrating workout data: " + e.getMessage());
+            }
+        }
 
         // If file doesn't exist, return a new default lifter
         if (!file.exists()) {
@@ -56,7 +93,7 @@ public class FileManager {
             return new Lifter("New Lifter", 75.0);
         }
 
-        try (Scanner scanner = new Scanner(new FileReader(FILE_NAME))) {
+        try (Scanner scanner = new Scanner(new FileReader(file))) {
             String name = scanner.nextLine();
             double bodyWeight = Double.parseDouble(scanner.nextLine());
             Lifter lifter = new Lifter(name, bodyWeight);
