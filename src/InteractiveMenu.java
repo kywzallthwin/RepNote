@@ -41,15 +41,15 @@ public class InteractiveMenu {
                         editUserInfoOption();
                         break;
                     case 5:
-                        System.out.println("\n✓ Saving and exiting RepNote... Goodbye!");
+                        System.out.println("\nSaving and exiting RepNote... Goodbye!");
                         FileManager.saveWorkoutHistory(lifter);
                         running = false;
                         break;
                     default:
-                        System.out.println("\n✗ Invalid choice. Please enter 1-5.");
+                        System.out.println("\nInvalid choice. Please enter 1-5.");
                 }
             } catch (NumberFormatException e) {
-                System.out.println("\n✗ Invalid input. Please enter a number.");
+                System.out.println("\nInvalid input. Please enter a number.");
             }
         }
 
@@ -96,30 +96,30 @@ public class InteractiveMenu {
                         System.out.print("Enter new name: ");
                         String newName = scanner.nextLine();
                         if (lifter.updateName(newName)) {
-                            System.out.println("\n✓ User name updated to: " + lifter.getName());
+                            System.out.println("\nUser name updated to: " + lifter.getName());
                             FileManager.saveWorkoutHistory(lifter);
                         } else {
-                            System.out.println("\n✗ Invalid name. Please try again.");
+                            System.out.println("\nInvalid name. Please try again.");
                         }
                         break;
                     case 2:
                         System.out.print("Enter new body weight (kg): ");
                         double newBodyWeight = Double.parseDouble(scanner.nextLine());
                         if (lifter.updateBodyWeight(newBodyWeight)) {
-                            System.out.println("\n✓ Body weight updated to: " + lifter.getBodyWeight() + " kg");
+                            System.out.println("\nBody weight updated to: " + lifter.getBodyWeight() + " kg");
                             FileManager.saveWorkoutHistory(lifter);
                         } else {
-                            System.out.println("\n✗ Invalid body weight. Must be greater than 0.");
+                            System.out.println("\nInvalid body weight. Must be greater than 0.");
                         }
                         break;
                     case 0:
                         editing = false;
                         break;
                     default:
-                        System.out.println("\n✗ Invalid choice. Please enter 0-2.");
+                        System.out.println("\nInvalid choice. Please enter 0-2.");
                 }
             } catch (NumberFormatException e) {
-                System.out.println("\n✗ Invalid input. Please enter a valid number.");
+                System.out.println("\nInvalid input. Please enter a valid number.");
             }
         }
     }
@@ -131,7 +131,7 @@ public class InteractiveMenu {
         ArrayList<WorkoutTracker> sessions = lifter.getHistory().getSessions();
 
         if (sessions.isEmpty()) {
-            System.out.println("\n✗ Error: No workout history to show.");
+            System.out.println("\nError: No workout history to show.");
             System.out.println("Press Enter to return to main menu...");
             scanner.nextLine();
             return;
@@ -158,7 +158,7 @@ public class InteractiveMenu {
         ArrayList<WorkoutTracker> sessions = lifter.getHistory().getSessions();
 
         if (sessions.isEmpty()) {
-            System.out.println("\n✗ No workout sessions to edit.");
+            System.out.println("\nNo workout sessions to edit.");
             return;
         }
 
@@ -183,10 +183,10 @@ public class InteractiveMenu {
             if (choice > 0 && choice <= sessions.size()) {
                 editSessionMenu(sessions.get(choice - 1));
             } else {
-                System.out.println("\n✗ Invalid selection.");
+                System.out.println("\nInvalid selection.");
             }
         } catch (NumberFormatException e) {
-            System.out.println("\n✗ Invalid input.");
+            System.out.println("\nInvalid input.");
         }
     }
 
@@ -235,10 +235,10 @@ public class InteractiveMenu {
                 } else if (choice == 3) {
                     removeExerciseFromSession(session);
                 } else {
-                    System.out.println("\n✗ Invalid choice.");
+                    System.out.println("\nInvalid choice.");
                 }
             } catch (NumberFormatException e) {
-                System.out.println("\n✗ Invalid input.");
+                System.out.println("\nInvalid input.");
             }
         }
 
@@ -252,7 +252,7 @@ public class InteractiveMenu {
         ArrayList<Exercise> exercises = session.getExercises();
 
         if (exercises.isEmpty()) {
-            System.out.println("\n✗ No exercises to edit.");
+            System.out.println("\nNo exercises to edit.");
             return;
         }
 
@@ -275,10 +275,10 @@ public class InteractiveMenu {
             if (choice > 0 && choice <= exercises.size()) {
                 editExerciseMenu(exercises.get(choice - 1));
             } else {
-                System.out.println("\n✗ Invalid selection.");
+                System.out.println("\nInvalid selection.");
             }
         } catch (NumberFormatException e) {
-            System.out.println("\n✗ Invalid input.");
+            System.out.println("\nInvalid input.");
         }
     }
 
@@ -321,22 +321,22 @@ public class InteractiveMenu {
                     System.out.print("Enter new weight (kg): ");
                     double newWeight = Double.parseDouble(scanner.nextLine());
                     exercise.updateWeight(newWeight);
-                    System.out.println("✓ Weight updated to " + newWeight + " kg");
+                    System.out.println("Weight updated to " + newWeight + " kg");
                 } else if (choice == 2) {
                     System.out.print("Enter new sets: ");
                     int newSets = Integer.parseInt(scanner.nextLine());
                     exercise.updateSets(newSets);
-                    System.out.println("✓ Sets updated to " + newSets);
+                    System.out.println("Sets updated to " + newSets);
                 } else if (choice == 3) {
                     System.out.print("Enter new reps: ");
                     int newReps = Integer.parseInt(scanner.nextLine());
                     exercise.updateReps(newReps);
-                    System.out.println("✓ Reps updated to " + newReps);
+                    System.out.println("Reps updated to " + newReps);
                 } else {
-                    System.out.println("✗ Invalid choice.");
+                    System.out.println("Invalid choice.");
                 }
             } catch (NumberFormatException e) {
-                System.out.println("✗ Invalid input. Please enter a valid number.");
+                System.out.println("Invalid input. Please enter a valid number.");
             }
         }
     }
@@ -368,17 +368,17 @@ public class InteractiveMenu {
                     System.out.print("Enter new duration (minutes): ");
                     int newDuration = Integer.parseInt(scanner.nextLine());
                     exercise.updateDuration(newDuration);
-                    System.out.println("✓ Duration updated to " + newDuration + " minutes");
+                    System.out.println("Duration updated to " + newDuration + " minutes");
                 } else if (choice == 2) {
                     System.out.print("Enter new distance (km): ");
                     double newDistance = Double.parseDouble(scanner.nextLine());
                     exercise.updateDistance(newDistance);
-                    System.out.println("✓ Distance updated to " + newDistance + " km");
+                    System.out.println("Distance updated to " + newDistance + " km");
                 } else {
-                    System.out.println("✗ Invalid choice.");
+                    System.out.println("Invalid choice.");
                 }
             } catch (NumberFormatException e) {
-                System.out.println("✗ Invalid input. Please enter a valid number.");
+                System.out.println("Invalid input. Please enter a valid number.");
             }
         }
     }
@@ -401,10 +401,10 @@ public class InteractiveMenu {
             } else if (type == 2) {
                 addCardioExercise(session);
             } else {
-                System.out.println("\n✗ Invalid choice.");
+                System.out.println("\nInvalid choice.");
             }
         } catch (NumberFormatException e) {
-            System.out.println("\n✗ Invalid input.");
+            System.out.println("\nInvalid input.");
         }
     }
 
@@ -431,7 +431,7 @@ public class InteractiveMenu {
         Weightlifting exercise = new Weightlifting(name, equipment, weight, sets, reps);
         session.addExercise(exercise);
 
-        System.out.println("\n✓ Exercise added successfully!");
+        System.out.println("\nExercise added successfully!");
     }
 
     /**
@@ -454,7 +454,7 @@ public class InteractiveMenu {
         Cardio exercise = new Cardio(name, equipment, duration, distance);
         session.addExercise(exercise);
 
-        System.out.println("\n✓ Exercise added successfully!");
+        System.out.println("\nExercise added successfully!");
     }
 
     /**
@@ -464,7 +464,7 @@ public class InteractiveMenu {
         ArrayList<Exercise> exercises = session.getExercises();
 
         if (exercises.isEmpty()) {
-            System.out.println("\n✗ No exercises to remove.");
+            System.out.println("\nNo exercises to remove.");
             return;
         }
 
@@ -486,12 +486,12 @@ public class InteractiveMenu {
 
             if (choice > 0 && choice <= exercises.size()) {
                 Exercise removed = exercises.remove(choice - 1);
-                System.out.println("\n✓ Exercise removed: " + removed.getName());
+                System.out.println("\nExercise removed: " + removed.getName());
             } else {
-                System.out.println("\n✗ Invalid selection.");
+                System.out.println("\nInvalid selection.");
             }
         } catch (NumberFormatException e) {
-            System.out.println("\n✗ Invalid input.");
+            System.out.println("\nInvalid input.");
         }
     }
 
@@ -529,19 +529,22 @@ public class InteractiveMenu {
                 } else if (choice == 2) {
                     addCardioExercise(newSession);
                 } else {
-                    System.out.println("\n✗ Invalid choice.");
+                    System.out.println("\nInvalid choice.");
                 }
             } catch (NumberFormatException e) {
-                System.out.println("\n✗ Invalid input.");
+                System.out.println("\nInvalid input.");
             }
         }
 
         if (newSession.getExercises().size() > 0) {
             lifter.getHistory().addSession(newSession);
-            System.out.println("\n✓ New workout session created with " + newSession.getExercises().size() + " exercises!");
+            System.out.println("\nNew workout session created with " + newSession.getExercises().size() + " exercises!");
             FileManager.saveWorkoutHistory(lifter);
         } else {
-            System.out.println("\n✗ Session not created (no exercises added).");
+            System.out.println("\nSession not created (no exercises added).");
         }
     }
 }
+
+
+

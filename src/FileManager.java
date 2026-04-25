@@ -38,7 +38,7 @@ public class FileManager {
                     }
                 }
             }
-            System.out.println("\n✓ Workout data saved successfully!");
+            System.out.println("\nWorkout data saved successfully!");
         } catch (IOException e) {
             System.out.println("Error saving workout data: " + e.getMessage());
         }
@@ -108,3 +108,6 @@ public class FileManager {
         }
     }
 }
+
+
+
