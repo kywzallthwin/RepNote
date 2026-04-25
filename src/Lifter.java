@@ -13,6 +13,10 @@ public class Lifter {
         return name;
     }
 
+    public double getBodyWeight() {
+        return bodyWeight;
+    }
+
     public WorkoutHistory getHistory() {
         return this.history;
     }

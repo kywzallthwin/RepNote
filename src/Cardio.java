@@ -21,6 +21,14 @@ public class Cardio extends Exercise {
         }
     }
 
+    public int getDurationMinutes() {
+        return durationMinutes;
+    }
+
+    public double getDistance() {
+        return distance;
+    }
+
     @Override
     public void displayExercise() {
         System.out.println("- " + name + " (" + gear.getEquipmentName() + "): " 

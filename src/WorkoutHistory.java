@@ -11,6 +11,10 @@ public class WorkoutHistory {
         this.allSessions.add(session);
     }
 
+    public ArrayList<WorkoutTracker> getSessions() {
+        return allSessions;
+    }
+
     public void viewAllSessions() {
         System.out.println("\n===== MASTER WORKOUT HISTORY =====");
         if (allSessions.isEmpty()) {

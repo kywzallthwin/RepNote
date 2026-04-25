@@ -32,6 +32,18 @@ public class Weightlifting extends Exercise {
         }
     }
 
+    public double getWeight() {
+        return weight;
+    }
+
+    public int getSets() {
+        return sets;
+    }
+
+    public int getReps() {
+        return reps;
+    }
+
     @Override
     public void displayExercise() {
         System.out.println("- " + name + " (" + gear.getEquipmentName() + "): " 

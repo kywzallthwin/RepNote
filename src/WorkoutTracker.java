@@ -16,6 +16,18 @@ public class WorkoutTracker {
         this.exerciseList.add(ex);
     }
 
+    public String getDayType() {
+        return dayType;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public ArrayList<Exercise> getExercises() {
+        return exerciseList;
+    }
+
     public void displayRoutine() {
         System.out.println("\n=== RepNote Tracker: " + dayType + " Day (" + date + ") ===");
 

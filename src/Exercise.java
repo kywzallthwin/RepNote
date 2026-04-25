@@ -12,4 +12,8 @@ public abstract class  Exercise {
     public String getName() {
         return name;
     }
+
+    public Equipment getEquipment() {
+        return gear;
+    }
 }
