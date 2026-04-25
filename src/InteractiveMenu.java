@@ -143,8 +143,19 @@ public class InteractiveMenu {
 
         for (int i = 0; i < sessions.size(); i++) {
             WorkoutTracker session = sessions.get(i);
-            System.out.println((i + 1) + ". " + session.getDayType() + " Day - " + session.getDate() 
-                             + " (" + session.getExercises().size() + " exercises)");
+            System.out.println((i + 1) + ". " + session.getDayType() + " Day - " + session.getDate());
+
+            ArrayList<Exercise> exercises = session.getExercises();
+            if (exercises.isEmpty()) {
+                System.out.println("   No exercises recorded");
+            } else {
+                for (int j = 0; j < exercises.size(); j++) {
+                    System.out.print("   " + (j + 1) + ". ");
+                    exercises.get(j).displayExercise();
+                }
+            }
+
+            System.out.println();
         }
 
         System.out.println("\nPress Enter to return to main menu...");
