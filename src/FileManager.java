@@ -99,7 +99,7 @@ public class FileManager {
                 lifter.getHistory().addSession(session);
             }
 
-            System.out.println("✓ Workout data loaded successfully!\n");
+            System.out.println("--Workout data loaded successfully!--\n");
             return lifter;
 
         } catch (IOException e) {

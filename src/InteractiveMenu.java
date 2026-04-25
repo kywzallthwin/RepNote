@@ -102,7 +102,9 @@ public class InteractiveMenu {
         ArrayList<WorkoutTracker> sessions = lifter.getHistory().getSessions();
 
         if (sessions.isEmpty()) {
-            System.out.println("\n✗ No workout sessions recorded yet.");
+            System.out.println("\n✗ Error: No workout history to show.");
+            System.out.println("Press Enter to return to main menu...");
+            scanner.nextLine();
             return;
         }
 
