@@ -4,7 +4,7 @@ public class Weightlifting extends Exercise {
     private int sets;
     private int reps;
 
-    public Weightlifting(double weight, int sets, int reps, String name, Equipment gear) {
+    public Weightlifting( String name, Equipment gear, double weight, int sets, int reps) {
         super(name, gear);
         this.weight = weight;
         this.sets = sets;

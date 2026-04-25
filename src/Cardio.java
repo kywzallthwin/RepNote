@@ -2,7 +2,7 @@ public class Cardio extends Exercise {
     private int durationMinutes;
     private double distance;
 
-    public Cardio(int durationMinutes, double distance, String name, Equipment gear) {
+    public Cardio(String name, Equipment gear, int durationMinutes, double distance) {
         super(name, gear);
         this.durationMinutes = durationMinutes;
         this.distance = distance;
