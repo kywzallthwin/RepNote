@@ -38,7 +38,7 @@ public class InteractiveMenu {
                         createNewSessionOption();
                         break;
                     case 4:
-                        editUserNameOption();
+                        editUserInfoOption();
                         break;
                     case 5:
                         System.out.println("\n✓ Saving and exiting RepNote... Goodbye!");
@@ -68,30 +68,59 @@ public class InteractiveMenu {
         System.out.println("1. View Workout History");
         System.out.println("2. Edit Existing Workout Session");
         System.out.println("3. Create New Workout Session");
-        System.out.println("4. Edit User Name");
+        System.out.println("4. Edit User Info");
         System.out.println("5. Exit & Save");
         System.out.println("========================================");
     }
 
     /**
-     * Option 4: Edit user profile name
+     * Option 4: Edit all user profile info
      */
-    private void editUserNameOption() {
-        System.out.println("\n--- EDIT USER NAME ---");
-        System.out.println("Current name: " + lifter.getName());
-        System.out.print("Enter new name (or press Enter to cancel): ");
+    private void editUserInfoOption() {
+        boolean editing = true;
 
-        String newName = scanner.nextLine();
-        if (newName.trim().isEmpty()) {
-            System.out.println("\nNo changes made.");
-            return;
-        }
+        while (editing) {
+            System.out.println("\n--- EDIT USER INFO ---");
+            System.out.println("Current name: " + lifter.getName());
+            System.out.println("Current body weight: " + lifter.getBodyWeight() + " kg\n");
+            System.out.println("1. Edit Name");
+            System.out.println("2. Edit Body Weight");
+            System.out.println("0. Back to Main Menu\n");
+            System.out.print("Enter your choice: ");
 
-        if (lifter.updateName(newName)) {
-            System.out.println("\n✓ User name updated to: " + lifter.getName());
-            FileManager.saveWorkoutHistory(lifter);
-        } else {
-            System.out.println("\n✗ Invalid name. Please try again.");
+            try {
+                int choice = Integer.parseInt(scanner.nextLine());
+
+                switch (choice) {
+                    case 1:
+                        System.out.print("Enter new name: ");
+                        String newName = scanner.nextLine();
+                        if (lifter.updateName(newName)) {
+                            System.out.println("\n✓ User name updated to: " + lifter.getName());
+                            FileManager.saveWorkoutHistory(lifter);
+                        } else {
+                            System.out.println("\n✗ Invalid name. Please try again.");
+                        }
+                        break;
+                    case 2:
+                        System.out.print("Enter new body weight (kg): ");
+                        double newBodyWeight = Double.parseDouble(scanner.nextLine());
+                        if (lifter.updateBodyWeight(newBodyWeight)) {
+                            System.out.println("\n✓ Body weight updated to: " + lifter.getBodyWeight() + " kg");
+                            FileManager.saveWorkoutHistory(lifter);
+                        } else {
+                            System.out.println("\n✗ Invalid body weight. Must be greater than 0.");
+                        }
+                        break;
+                    case 0:
+                        editing = false;
+                        break;
+                    default:
+                        System.out.println("\n✗ Invalid choice. Please enter 0-2.");
+                }
+            } catch (NumberFormatException e) {
+                System.out.println("\n✗ Invalid input. Please enter a valid number.");
+            }
         }
     }
 

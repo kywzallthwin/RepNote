@@ -31,6 +31,15 @@ public class Lifter {
         return bodyWeight;
     }
 
+    public boolean updateBodyWeight(double newBodyWeight) {
+        if (newBodyWeight <= 0) {
+            return false;
+        }
+
+        this.bodyWeight = newBodyWeight;
+        return true;
+    }
+
     public WorkoutHistory getHistory() {
         return this.history;
     }
