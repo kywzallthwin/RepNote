@@ -13,6 +13,20 @@ public class Lifter {
         return name;
     }
 
+    public boolean updateName(String newName) {
+        if (newName == null) {
+            return false;
+        }
+
+        String cleanedName = newName.trim();
+        if (cleanedName.isEmpty()) {
+            return false;
+        }
+
+        this.name = cleanedName;
+        return true;
+    }
+
     public double getBodyWeight() {
         return bodyWeight;
     }
